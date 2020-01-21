@@ -25,15 +25,15 @@ public class ShiroConfig {
     @Value("${spring.redis.host}")
     String host;
 
-    @Value("${spring.redis.port}")
-    int port;
+//    @Value("${spring.redis.port}")
+//    int port;
 
     @Bean
     public RedisManager redisManager(){
         RedisManager redisManager = new RedisManager();     //  实现
 //        RedisClusterManager redisClusterManager = new RedisClusterManager();
         redisManager.setHost(host);
-        redisManager.setPort(port);
+//        redisManager.setPort(port);
         redisManager.setTimeout(180000);
         return redisManager;
     }

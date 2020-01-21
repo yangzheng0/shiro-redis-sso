@@ -25,15 +25,15 @@ public class ShiroConfig {
     @Value("${spring.redis.host}")
     String host;
 
-    @Value("${spring.redis.port}")
-    int port;
+//    @Value("${spring.redis.port}")
+//    int port;
 
     @Bean
     public RedisManager redisManager(){
         RedisManager redisManager = new RedisManager();     //  实现
 //        RedisClusterManager redisClusterManager = new RedisClusterManager();
         redisManager.setHost(host);
-        redisManager.setPort(port);
+//        redisManager.setPort(port);
         redisManager.setTimeout(180000);
         return redisManager;
     }
@@ -47,6 +47,7 @@ public class ShiroConfig {
     public RedisSessionDAO sessionDAO(){
         RedisSessionDAO sessionDAO = new RedisSessionDAO(); // crazycake 实现
         sessionDAO.setRedisManager(redisManager());
+        sessionDAO.setSessionInMemoryEnabled(false);
         sessionDAO.setSessionIdGenerator(sessionIdGenerator()); //  Session ID 生成器
         return sessionDAO;
     }
